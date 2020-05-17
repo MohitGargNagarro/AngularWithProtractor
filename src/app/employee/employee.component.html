@@ -1,0 +1,45 @@
+<div class="container mt-5">
+    <div *ngIf="employees?.length >0; else noEmployees">
+        <ul class="list-group">
+            <li *ngFor="let employee of employees" class="list-group-item">
+                <div class="row">
+                    <div class="col">{{employee.name}}</div>
+                    <div class="col">{{employee.age}}</div>
+                    <div class="col-sm-auto">
+                        <button (click)="editEmployee($event, employee)" class="btn btn-link">Update</button>
+                    </div>
+                    <div class="col-sm-auto">
+                        <button (click)="deleteEmployee($event, employee)" class="btn btn-link">Delete</button>
+                    </div>
+                </div>
+                <div *ngIf="editState && employeeToEdit.id === employee.id">
+                    <form (ngSubmit)="updateEmployeeDetails(employee)">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label> Name Of The Employee</label>
+                                    <input type="text" [(ngModel)]="employee.name" name="empName"
+                                        class="form-control" />
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label> Age Of The Employee</label>
+                                    <input type="age" [(ngModel)]="employee.age" name="age" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <input type="submit" class="btn btn-dark" value="Update Emploee" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <ng-template #noEmployees>
+        <h5>There are no employees.</h5>
+    </ng-template>
+</div>

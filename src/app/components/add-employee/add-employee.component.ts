@@ -22,7 +22,7 @@ export class AddEmployeeComponent implements OnInit {
   resetFields(){
     this.employee.name = '';
     this.employee.age = '';
-  } 
+  }
 
   onSubmit(){
     if(this.employee.name !== '' && this.employee.age !== '')
